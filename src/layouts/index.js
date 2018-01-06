@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
-import { withPrefix } from "gatsby-link";
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 
 import '../styles/index.sass'
 
-const TemplateWrapper = ({ children, data }) => (
+const TemplateWrapper = ({ children, data,location }) => (
   <div className="container">
     <HelmetDatoCms
       favicon={data.datoCmsSite.faviconMetaTags}
@@ -24,10 +23,10 @@ const TemplateWrapper = ({ children, data }) => (
           }}
         />
         <ul className="sidebar__menu">
-          <li className={IsLocationActive("/")}>
+          <li className={GetActiveClass(location, "/")}>
             <Link to="/">Home</Link>
           </li>
-          <li className={IsLocationActive("/about")}>
+          <li className={GetActiveClass(location , "/about")}>
             <Link to="/about">About</Link>
           </li>
         </ul>
@@ -50,11 +49,11 @@ const TemplateWrapper = ({ children, data }) => (
       <div className="container__mobile-header">
         <div className="mobile-header">
           <div className="mobile-header__menu">
-          <li className={IsLocationActive("/")}>
+          <li className={GetActiveClass(location , "/")}>
             <Link to="/">Home</Link>
           </li>
           <li>|</li>
-          <li className={IsLocationActive("/about")}>
+          <li className={GetActiveClass(location , "/about")}>
             <Link to="/about">About</Link>
           </li>
           </div>
@@ -74,8 +73,8 @@ TemplateWrapper.propTypes = {
 
 export default TemplateWrapper
 
-export const IsLocationActive = locationToCheck => (
-   location.pathname === locationToCheck && "is-active"
+export const GetActiveClass = (location,locationToCheck) => (
+  location.pathname === locationToCheck && "is-active"
 )
 
 export const query = graphql`
