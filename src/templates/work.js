@@ -12,15 +12,8 @@ export default ({ data }) => (
     <div className="sheet__inner">
       <h1 className="sheet__title">{data.datoCmsWork.title}</h1>
       <p className="sheet__lead">{data.datoCmsWork.excerpt}</p>
-      {/* <div className="sheet__gallery">
+      <div className="sheet__gallery">
         <Img sizes={data.datoCmsWork.coverImage.sizes} />
-      </div> */}
-      <div className="sheet__slider">
-        <Slider infinite={true} slidesToShow={2} arrows>
-          {data.datoCmsWork.gallery.map(({ resize }) => (
-            <img key={resize.src} src={resize.src} />
-          ))}
-        </Slider>
       </div>
       <div
         className="sheet__body"
@@ -41,11 +34,6 @@ export const query = graphql`
       }
       title
       excerpt
-      gallery {
-        resize(height: 200, imgixParams: { fm: "jpg", auto: "compress" }) {
-          src
-        }
-      }
       descriptionNode {
         childMarkdownRemark {
           html
