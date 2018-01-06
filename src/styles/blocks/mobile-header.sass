@@ -4,15 +4,24 @@
   margin: 0 15px
 
 .mobile-header__menu
-  a
-    display: inline-block
-    width: 20px
-    height: 20px
-    background: url('https://cdn.rawgit.com/encharm/Font-Awesome-SVG-PNG/master/black/svg/bars.svg')
-    background-position: 50% 50%
-    background-repeat: no-repeat
-    background-size: contain
+ display: flex
+ li
+    list-style-type: none;
+    a
+      text-decoration: none
+      display: block
+      padding-left: 5px
+      padding-right: 5px
+      color: $base-body-color
+      position: relative
 
+      &:hover
+        font-weight: bold
+        color: $active-color
+
+    &.is-active a
+      font-weight: bold
+      color: $active-color
 .mobile-header__logo
   flex: 1
   text-align: right

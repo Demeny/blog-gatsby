@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import { withPrefix } from "gatsby-link";
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 
 import '../styles/index.sass'
@@ -23,10 +24,10 @@ const TemplateWrapper = ({ children, data }) => (
           }}
         />
         <ul className="sidebar__menu">
-          <li>
+          <li className={IsLocationActive("/")}>
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className={IsLocationActive("/about")}>
             <Link to="/about">About</Link>
           </li>
         </ul>
@@ -49,7 +50,13 @@ const TemplateWrapper = ({ children, data }) => (
       <div className="container__mobile-header">
         <div className="mobile-header">
           <div className="mobile-header__menu">
-            <Link to="#" data-js="toggleSidebar" />
+          <li className={IsLocationActive("/")}>
+            <Link to="/">Home</Link>
+          </li>
+          <li>|</li>
+          <li className={IsLocationActive("/about")}>
+            <Link to="/about">About</Link>
+          </li>
           </div>
           <div className="mobile-header__logo">
             <Link to="/">{data.datoCmsSite.globalSeo.siteName}</Link>
@@ -66,6 +73,10 @@ TemplateWrapper.propTypes = {
 }
 
 export default TemplateWrapper
+
+export const IsLocationActive = locationToCheck => (
+   location.pathname === locationToCheck && "is-active"
+)
 
 export const query = graphql`
   query LayoutQuery {
