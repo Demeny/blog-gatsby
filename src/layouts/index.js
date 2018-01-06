@@ -30,17 +30,19 @@ const TemplateWrapper = ({ children, data }) => (
             <Link to="/about">About</Link>
           </li>
         </ul>
-        <p className="sidebar__social">
-          {data.allDatoCmsSocialProfile.edges.map(({ node: profile }) => (
-            <a
-              key={profile.profileType}
-              href={profile.url}
-              target="blank"
-              className={`social social--${profile.profileType.toLowerCase()}`}
-            />
-          ))}
-        </p>
-        <div className="sidebar__copyright">{data.datoCmsHome.copyright}</div>
+        <div className="sidebar__footer ">
+          <p className="sidebar__social">
+            {data.allDatoCmsSocialProfile.edges.map(({ node: profile }) => (
+              <a
+                key={profile.profileType}
+                href={profile.url}
+                target="blank"
+                className={`social social--${profile.profileType.toLowerCase()}`}
+              />
+            ))}
+          </p>
+          <div className="sidebar__copyright">{data.datoCmsHome.copyright}</div>
+        </div>
       </div>
     </div>
     <div className="container__body">
